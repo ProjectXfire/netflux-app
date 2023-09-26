@@ -24,6 +24,14 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 - [https://nextui.org/docs/frameworks/nextjs] - NextUI Config for NextJS
 
+## Prisma
+
+Create database:
+
+```bash
+npx prisma db push
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
