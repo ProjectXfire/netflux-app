@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Capriola } from 'next/font/google';
-import { Providers } from '@/shared/components';
+import { Providers } from './(shared)/components';
 
 const capriola = Capriola({ subsets: ['latin'], weight: '400' });
 
