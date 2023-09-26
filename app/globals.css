@@ -11,6 +11,7 @@
   --danger: rgb(212, 45, 45);
   --warning: rgb(196, 141, 31);
   --background: radial-gradient(circle, rgb(19, 19, 102) 0%, rgb(14, 10, 52) 100%);
+  --max-width: 1240px;
 }
 
 * {
