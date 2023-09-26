@@ -1,8 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import styles from './AuthForms.module.css';
 import { AuthFooter, AuthLogin, AuthRegister, AuthSocials } from '..';
-import { useState } from 'react';
 
 type AuthSelected = 'login' | 'register';
 

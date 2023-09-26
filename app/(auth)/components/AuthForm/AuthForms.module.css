@@ -40,13 +40,13 @@
 
 .auth-footer p {
   color: var(--primary);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .auth-footer button {
   color: var(--white);
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 @keyframes fadeIn {

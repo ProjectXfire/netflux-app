@@ -1,21 +1,32 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Formik, Form } from 'formik';
+import toast from 'react-hot-toast';
 import styles from './AuthForms.module.css';
 import { type ICreateUserDto } from '../../types';
 import { RegisterSchema } from '../../schemas';
+import { createUser } from '../../services';
 import { Input } from '@nextui-org/input';
 import { Button } from '@nextui-org/button';
 import { Title } from '@/app/(shared)/components';
 
 function AuthRegister(): JSX.Element {
-  const onSubmit = (data: ICreateUserDto): void => {
-    console.log(data);
+  const router = useRouter();
+
+  const onSubmit = async (data: ICreateUserDto): Promise<void> => {
+    const { errorMessage, successfulMessage } = await createUser(data);
+    if (errorMessage !== null) {
+      toast.error(errorMessage);
+    } else {
+      toast.success(successfulMessage);
+      router.push('/profile');
+    }
   };
 
   return (
     <Formik
-      initialValues={{ username: '', email: '', password: '' }}
+      initialValues={{ name: '', email: '', password: '' }}
       validationSchema={RegisterSchema}
       onSubmit={onSubmit}
     >
@@ -23,18 +34,12 @@ function AuthRegister(): JSX.Element {
         <Form className={styles.form} onSubmit={handleSubmit}>
           <Title size='medium' color='var(--default)' text='Sign up' />
           <Input
-            {...getFieldProps('username')}
+            {...getFieldProps('name')}
             color='primary'
             type='text'
             label='Username'
-            isInvalid={
-              !!(
-                errors.username !== undefined &&
-                touched.username !== undefined &&
-                touched.username
-              )
-            }
-            errorMessage={errors.username}
+            isInvalid={!!(errors.name !== undefined && touched.name !== undefined && touched.name)}
+            errorMessage={errors.name}
           />
           <Input
             {...getFieldProps('email')}
@@ -60,7 +65,7 @@ function AuthRegister(): JSX.Element {
             }
             errorMessage={errors.password}
           />
-          <Button type='submit' color='primary'>
+          <Button className='mt-6' type='submit' color='primary'>
             Register
           </Button>
         </Form>

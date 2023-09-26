@@ -1,16 +1,27 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { Formik, Form } from 'formik';
+import toast from 'react-hot-toast';
 import styles from './AuthForms.module.css';
 import { type ILoginDto } from '../../types';
 import { LoginSchema } from '../../schemas';
+import { authUser } from '../../services';
 import { Input } from '@nextui-org/input';
 import { Button } from '@nextui-org/button';
 import { Title } from '@/app/(shared)/components';
 
 function AuthLogin(): JSX.Element {
-  const onSubmit = (data: ILoginDto): void => {
-    console.log(data);
+  const router = useRouter();
+
+  const onSubmit = async (data: ILoginDto): Promise<void> => {
+    const { errorMessage, successfulMessage } = await authUser(data);
+    if (errorMessage !== null) {
+      toast.error(errorMessage);
+    } else {
+      toast.success(successfulMessage);
+      router.push('/profile');
+    }
   };
 
   return (
@@ -46,7 +57,7 @@ function AuthLogin(): JSX.Element {
             }
             errorMessage={errors.password}
           />
-          <Button type='submit' color='primary'>
+          <Button className='mt-6' type='submit' color='primary'>
             Login
           </Button>
         </Form>
