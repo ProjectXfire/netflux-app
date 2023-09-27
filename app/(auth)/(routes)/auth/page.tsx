@@ -1,10 +1,19 @@
+import { redirect } from 'next/navigation';
+import { LoadingProvider } from '@/app/(shared)/states';
 import { AuthContainer, AuthForms, AuthNavbar } from '../../components';
+import getUserInfoSession from '@/app/(shared)/libs/serverAuth';
 
-function AuthPage(): JSX.Element {
+async function AuthPage(): Promise<JSX.Element> {
+  const session = await getUserInfoSession();
+
+  if (session !== null) redirect('/profile');
+
   return (
     <AuthContainer>
       <AuthNavbar />
-      <AuthForms />
+      <LoadingProvider>
+        <AuthForms />
+      </LoadingProvider>
     </AuthContainer>
   );
 }

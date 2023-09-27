@@ -7,14 +7,21 @@ import styles from './AuthForms.module.css';
 import { type ILoginDto } from '../../types';
 import { LoginSchema } from '../../schemas';
 import { authUser } from '../../services';
+import { useLoadingContext } from '@/app/(shared)/states';
 import { Input } from '@nextui-org/input';
 import { Button } from '@nextui-org/button';
 import { Title } from '@/app/(shared)/components';
 
 function AuthLogin(): JSX.Element {
   const router = useRouter();
+  const {
+    state: { isLoading },
+    startLoading,
+    endLoading
+  } = useLoadingContext();
 
   const onSubmit = async (data: ILoginDto): Promise<void> => {
+    startLoading();
     const { errorMessage, successfulMessage } = await authUser(data);
     if (errorMessage !== null) {
       toast.error(errorMessage);
@@ -22,6 +29,7 @@ function AuthLogin(): JSX.Element {
       toast.success(successfulMessage);
       router.push('/profile');
     }
+    endLoading();
   };
 
   return (
@@ -57,7 +65,7 @@ function AuthLogin(): JSX.Element {
             }
             errorMessage={errors.password}
           />
-          <Button className='mt-6' type='submit' color='primary'>
+          <Button className='mt-6' type='submit' color='primary' isDisabled={isLoading}>
             Login
           </Button>
         </Form>
