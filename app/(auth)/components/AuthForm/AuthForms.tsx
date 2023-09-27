@@ -2,12 +2,16 @@
 
 import { useState } from 'react';
 import styles from './AuthForms.module.css';
+import { useLoadingContext } from '@/app/(shared)/states';
 import { AuthFooter, AuthLogin, AuthRegister, AuthSocials } from '..';
 
 type AuthSelected = 'login' | 'register';
 
 function AuthForms(): JSX.Element {
   const [authSelected, setAuthSelected] = useState<AuthSelected>('login');
+  const {
+    state: { isLoading }
+  } = useLoadingContext();
 
   const onChangeAuth = (type: AuthSelected): void => {
     setAuthSelected(type);
@@ -24,7 +28,7 @@ function AuthForms(): JSX.Element {
               text='First time using Netflux?'
               actionText='Create an account'
               action={() => {
-                onChangeAuth('register');
+                if (!isLoading) onChangeAuth('register');
               }}
             />
           </>
@@ -36,7 +40,7 @@ function AuthForms(): JSX.Element {
               text='Already have an account?'
               actionText='Click here'
               action={() => {
-                onChangeAuth('login');
+                if (!isLoading) onChangeAuth('login');
               }}
             />
           </>

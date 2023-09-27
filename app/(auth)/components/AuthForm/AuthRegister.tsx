@@ -7,14 +7,21 @@ import styles from './AuthForms.module.css';
 import { type ICreateUserDto } from '../../types';
 import { RegisterSchema } from '../../schemas';
 import { createUser } from '../../services';
+import { useLoadingContext } from '@/app/(shared)/states';
 import { Input } from '@nextui-org/input';
 import { Button } from '@nextui-org/button';
 import { Title } from '@/app/(shared)/components';
 
 function AuthRegister(): JSX.Element {
   const router = useRouter();
+  const {
+    state: { isLoading },
+    startLoading,
+    endLoading
+  } = useLoadingContext();
 
   const onSubmit = async (data: ICreateUserDto): Promise<void> => {
+    startLoading();
     const { errorMessage, successfulMessage } = await createUser(data);
     if (errorMessage !== null) {
       toast.error(errorMessage);
@@ -22,6 +29,7 @@ function AuthRegister(): JSX.Element {
       toast.success(successfulMessage);
       router.push('/profile');
     }
+    endLoading();
   };
 
   return (
@@ -65,7 +73,7 @@ function AuthRegister(): JSX.Element {
             }
             errorMessage={errors.password}
           />
-          <Button className='mt-6' type='submit' color='primary'>
+          <Button className='mt-6' type='submit' color='primary' isDisabled={isLoading}>
             Register
           </Button>
         </Form>

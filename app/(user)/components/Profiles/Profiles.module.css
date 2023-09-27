@@ -1,0 +1,55 @@
+.profile-container {
+  width: 100%;
+  height: 100dvh;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profiles {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.profiles button {
+  width: 120px;
+}
+
+.profiles span {
+  font-size: 0.8rem;
+}
+
+.profiles button:hover .profiles-img {
+  border: 1.5px solid var(--white);
+}
+
+.profiles-img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+}
+
+@media screen and (min-width: 768px) {
+  .profiles button {
+    width: 14.5dvw;
+  }
+  .profiles span {
+    font-size: 1.4dvw;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .profiles button {
+    width: 150px;
+  }
+  .profiles span {
+    font-size: 1rem;
+  }
+}

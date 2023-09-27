@@ -2,11 +2,16 @@
 
 import { signIn } from 'next-auth/react';
 import styles from './AuthForms.module.css';
+import { useLoadingContext } from '@/app/(shared)/states';
 import { Button } from '@nextui-org/button';
 import { FcGoogle } from 'react-icons/fc';
 import { AiOutlineGithub } from 'react-icons/ai';
 
 function AuthSocials(): JSX.Element {
+  const {
+    state: { isLoading }
+  } = useLoadingContext();
+
   const onGoogleSignIn = async (): Promise<void> => {
     await signIn('google', { callbackUrl: '/' });
   };
@@ -19,6 +24,7 @@ function AuthSocials(): JSX.Element {
       <Button
         type='button'
         isIconOnly
+        isDisabled={isLoading}
         onClick={() => {
           void onGoogleSignIn();
         }}
@@ -28,6 +34,7 @@ function AuthSocials(): JSX.Element {
       <Button
         type='button'
         isIconOnly
+        isDisabled={isLoading}
         onClick={() => {
           void onGithubSignIn();
         }}
