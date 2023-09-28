@@ -70,7 +70,7 @@ function Navbar({ session }: Props): JSX.Element {
 
   return (
     <NUINavbar
-      className={`${navbarBackground ? '' : 'bg-transparent backdrop-saturate-1'}`}
+      className={`${navbarBackground ? '' : 'bg-transparent backdrop-blur-0'} fixed`}
       position='sticky'
       maxWidth='full'
     >
