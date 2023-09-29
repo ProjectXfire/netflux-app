@@ -1,5 +1,6 @@
 [
   {
+    "id": "1",
     "title": "Big Buck Bunny",
     "description": "Three rodents amuse themselves by harassing creatures of the forest. However, when they mess with a bunny, he decides to teach them a lesson.",
     "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
@@ -8,6 +9,7 @@
     "duration": "10 minutes"
   },
   {
+    "id": "2",
     "title": "Sintel",
     "description": "A lonely young woman, Sintel, helps and befriends a dragon, whom she calls Scales. But when he is kidnapped by an adult dragon, Sintel decides to embark on a dangerous quest to find her lost friend Scales.",
     "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
@@ -16,6 +18,7 @@
     "duration": "15 minutes"
   },
   {
+    "id": "3",
     "title": "Tears of Steel",
     "description": "In an apocalyptic future, a group of soldiers and scientists takes refuge in Amsterdam to try to stop an army of robots that threatens the planet.",
     "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
@@ -24,6 +27,7 @@
     "duration": "12 minutes"
   },
   {
+    "id": "4",
     "title": "Elephant's Dream",
     "description": "Friends Proog and Emo journey inside the folds of a seemingly infinite Machine, exploring the dark and twisted complex of wires, gears, and cogs, until a moment of conflict negates all their assumptions.",
     "videoUrl": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
