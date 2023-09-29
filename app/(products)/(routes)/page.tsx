@@ -15,7 +15,7 @@ export default async function Home(): Promise<JSX.Element> {
     <section>
       <Navbar session={session} />
       <Hero randomMovie={randomMovie} />
-      <MoviesContent movies={movies} />
+      <MoviesContent movies={movies} title='Trending Now' />
     </section>
   );
 }
