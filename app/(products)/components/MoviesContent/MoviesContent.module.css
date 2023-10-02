@@ -12,7 +12,7 @@
 
 .movie-item-container {
   width: 100%;
-  height: 240px;
+  height: 210px;
   position: relative;
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@
 
 .movie-item-static {
   position: relative;
-  width: 90%;
+  width: 93%;
   height: 150px;
   flex-shrink: 0;
   cursor: pointer;
@@ -33,7 +33,7 @@
 }
 
 .movie-item-hover {
-  width: 90%;
+  width: 93%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -55,10 +55,10 @@
 }
 
 .movie-item-hover__content {
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   font-size: 0.7rem;
 }
 

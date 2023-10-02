@@ -1,16 +1,41 @@
 'use client';
 
 import NextImage from 'next/image';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 import styles from './MoviesContent.module.css';
 import { type IMovie } from '../../types';
+import { removeFavorite, setFavorite } from '../../services';
 import { AiFillPlayCircle } from 'react-icons/ai';
+import { MdFavorite, MdOutlineFavoriteBorder } from 'react-icons/md';
 import { Button } from '@nextui-org/react';
 
 interface Props {
   movie: IMovie;
+  favoritesMoviesIds: string[];
+  sessionId: string;
 }
 
-function MovieCard({ movie }: Props): JSX.Element {
+function MovieCard({ movie, favoritesMoviesIds, sessionId }: Props): JSX.Element {
+  const router = useRouter();
+  const isFavorite = favoritesMoviesIds.includes(movie.id);
+
+  const handleFavorite = async (): Promise<void> => {
+    if (isFavorite) {
+      const { successfulMessage } = await removeFavorite(movie.id, sessionId);
+      if (successfulMessage !== null) {
+        toast.success('Removed from favorites');
+        router.refresh();
+      }
+    } else {
+      const { successfulMessage } = await setFavorite(movie.id, sessionId);
+      if (successfulMessage !== null) {
+        toast.success('Added to favorites');
+        router.refresh();
+      }
+    }
+  };
+
   return (
     <div className={styles['movie-item-container']}>
       <article className={styles['movie-item-static']}>
@@ -21,8 +46,19 @@ function MovieCard({ movie }: Props): JSX.Element {
           <NextImage src={movie.thumbnailUrl} fill alt={movie.title} />
         </div>
         <div className={styles['movie-item-hover__content']}>
-          <Button size='md' isIconOnly color='primary'>
-            <AiFillPlayCircle size={35} />
+          <Button size='sm' isIconOnly color='primary'>
+            <AiFillPlayCircle size={25} />
+          </Button>
+          <Button
+            type='button'
+            size='sm'
+            isIconOnly
+            color='primary'
+            onClick={() => {
+              void handleFavorite();
+            }}
+          >
+            {isFavorite ? <MdFavorite size={25} /> : <MdOutlineFavoriteBorder size={25} />}
           </Button>
           <div>
             <p>{movie.genre}</p>
