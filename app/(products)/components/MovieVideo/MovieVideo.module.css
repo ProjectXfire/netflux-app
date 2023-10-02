@@ -1,0 +1,4 @@
+.movie-video {
+  width: 100dvw;
+  height: calc(100dvh - 80px);
+}

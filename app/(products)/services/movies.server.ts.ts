@@ -19,6 +19,23 @@ export async function getMovies(query?: string): Promise<IResponse<IMovie[]>> {
   }
 }
 
+export async function getMovie(movieId: string): Promise<IResponse<IMovie | null>> {
+  try {
+    const movie = await client.movie.findUnique({ where: { id: movieId } });
+    return {
+      data: movie,
+      successfulMessage: 'Movie succesfully loaded',
+      errorMessage: null
+    };
+  } catch (error) {
+    return {
+      data: null,
+      successfulMessage: null,
+      errorMessage: 'Something went wrong!'
+    };
+  }
+}
+
 export async function getRandomMovie(): Promise<IResponse<IMovie | null>> {
   try {
     const moviesCount = await client.movie.count();

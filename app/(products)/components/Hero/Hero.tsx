@@ -1,8 +1,9 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import styles from './Hero.module.css';
 import { type IMovie } from '../../types';
-import { BsInfoCircle } from 'react-icons/bs';
+import { BsInfoCircle, BsFillPlayFill } from 'react-icons/bs';
 import { Button } from '@nextui-org/button';
 
 interface Props {
@@ -10,6 +11,12 @@ interface Props {
 }
 
 function Hero({ randomMovie }: Props): JSX.Element {
+  const router = useRouter();
+
+  const playVideo = (): void => {
+    router.push(`/watch/${randomMovie?.id}`);
+  };
+
   return (
     <div className={styles.hero}>
       <video
@@ -23,8 +30,18 @@ function Hero({ randomMovie }: Props): JSX.Element {
       <div className={styles.hero__detail}>
         <p>{randomMovie?.title}</p>
         <p>{randomMovie?.description}</p>
-        <div>
+        <div className={styles['hero__detail-actions']}>
           <Button
+            type='button'
+            variant='solid'
+            className='bg-opacity-70 bg-white'
+            startContent={<BsFillPlayFill size={20} />}
+            onClick={playVideo}
+          >
+            Play
+          </Button>
+          <Button
+            type='button'
             variant='solid'
             className='bg-opacity-70'
             startContent={<BsInfoCircle size={20} />}

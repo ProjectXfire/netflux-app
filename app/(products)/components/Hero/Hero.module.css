@@ -17,6 +17,11 @@
   gap: 1rem;
 }
 
+.hero__detail-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .hero__detail p:nth-child(1) {
   max-width: 600px;
   font-size: 2rem;
