@@ -1,8 +1,8 @@
 import { type IResponse } from '@/app/(shared)/types';
-import { type Movie } from '@prisma/client';
 import client from '../../(shared)/libs/prismadb';
+import { type IMovie } from '../types';
 
-export async function getMovies(query?: string): Promise<IResponse<Movie[]>> {
+export async function getMovies(query?: string): Promise<IResponse<IMovie[]>> {
   try {
     const movies = await client.movie.findMany();
     return {
@@ -19,7 +19,7 @@ export async function getMovies(query?: string): Promise<IResponse<Movie[]>> {
   }
 }
 
-export async function getRandomMovie(): Promise<IResponse<Movie | null>> {
+export async function getRandomMovie(): Promise<IResponse<IMovie | null>> {
   try {
     const moviesCount = await client.movie.count();
     const randomIndex = Math.floor(Math.random() * moviesCount);
