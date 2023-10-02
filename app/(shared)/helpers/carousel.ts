@@ -2,12 +2,12 @@ import { type ResponsiveType } from 'react-multi-carousel';
 
 export const carouselResponsive: ResponsiveType = {
   defeault: {
-    breakpoint: { max: 8000, min: 1241 },
-    items: 8
+    breakpoint: { max: 8000, min: 1401 },
+    items: 6
   },
 
   superLargeDesktop2: {
-    breakpoint: { max: 1240, min: 1025 },
+    breakpoint: { max: 1400, min: 1025 },
     items: 5
   },
   superLargeDesktop: {

@@ -46,7 +46,7 @@ function MovieCard({ movie, favoritesMoviesIds, sessionId }: Props): JSX.Element
           <NextImage src={movie.thumbnailUrl} fill alt={movie.title} />
         </div>
         <div className={styles['movie-item-hover__content']}>
-          <Button size='sm' isIconOnly color='primary'>
+          <Button type='button' size='sm' isIconOnly color='primary'>
             <AiFillPlayCircle size={25} />
           </Button>
           <Button
